@@ -5,7 +5,7 @@ description = ""
 authors = ["HIRANO Yoshitaka <yo@hirano.cc>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.7"
 pymilter = "^1.0.5"
 
 

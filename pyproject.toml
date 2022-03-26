@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "no_ppap_milter"
+version = "0.1.0"
+description = ""
+authors = ["HIRANO Yoshitaka <yo@hirano.cc>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pymilter = "^1.0.5"
+
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+mypy = "^0.812"
+flake8 = "^3.9.2"
+autopep8 = "^1.5.7"
+icecream = "^2.1.2"
+
+[tool.poetry.scripts]
+no-ppap-milter = 'no_ppap_milter.cli_no_ppap_milter:main'
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

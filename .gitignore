@@ -1,0 +1,10 @@
+__pycache__
+*egg-info
+dist
+build
+Pipfile*
+.venv
+.serverless
+node_modules
+/__*
+README_START.md

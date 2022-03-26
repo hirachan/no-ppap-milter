@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "threadheap.serverless-ide-vscode",
+        "ms-python.vscode-pylance",
+        "himanoa.python-autopep8",
+        "ms-python.python",
+        "tamasfe.even-better-toml",
+        "redhat.vscode-yaml",
+        "ms-azuretools.vscode-docker"
+    ]
+}

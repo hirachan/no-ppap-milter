@@ -18,6 +18,7 @@ def get_opt() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='NO PPAP Militer')
     parser.add_argument("--socket-name", dest="socket_name",
                         type=str, metavar="SOCKET_NAME",
+                        default="inet:9201",
                         help="inet:9201\nunix:/var/run/milter.sock inet:9201@[127.0.0.1]\ninet6:9201\ninet6:9201@[2001:db8:1234::1]")
 
     args = parser.parse_args()

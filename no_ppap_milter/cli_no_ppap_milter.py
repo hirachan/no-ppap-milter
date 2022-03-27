@@ -16,6 +16,10 @@ logger = getLogger()
 
 def get_opt() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description='NO PPAP Militer')
+    parser.add_argument("--socket-name", dest="socket_name",
+                        type=str, metavar="SOCKET_NAME",
+                        help="inet:9201\nunix:/var/run/milter.sock inet:9201@[127.0.0.1]\ninet6:9201\ninet6:9201@[2001:db8:1234::1]")
+
     args = parser.parse_args()
 
     return args
@@ -32,8 +36,7 @@ def main() -> int:
     args = get_opt()
 
     Milter.factory = no_ppap_milter.NoPPAPMilter
-    Milter.set_flags(Milter.CHGBODY + Milter.CHGHDRS + Milter.ADDHDRS)
-    Milter.runmilter("no-ppap-milter", "inet:9201", 9201)
+    Milter.runmilter("no-ppap-milter", args.socket_name, 60)
     logger.info("no-ppap-milter shutdown")
 
     return 0

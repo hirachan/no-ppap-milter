@@ -1,10 +1,10 @@
-from typing import List, cast, Generator
+from typing import cast, Generator
 import email
 import email.policy
 import email.message
 import email.utils
 from io import BytesIO
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 import zipfile
 
 
@@ -13,14 +13,6 @@ class Attach:
     filename: str
     is_zip: bool
     is_encrypted_zip: bool
-
-
-@dataclass
-class EnvelopeInfo:
-    source: str = ""
-    helo: str = ""
-    mail_from: str = ""
-    rcpt_tos: List[str] = field(default_factory=list)
 
 
 def _parse_attach(att: email.message.EmailMessage) -> Attach:

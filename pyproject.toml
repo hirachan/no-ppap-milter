@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "no_ppap_milter"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["HIRANO Yoshitaka <yo@hirano.cc>"]
 

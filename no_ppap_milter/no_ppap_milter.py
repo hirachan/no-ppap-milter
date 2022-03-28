@@ -6,11 +6,8 @@ from io import BytesIO
 
 import Milter
 
-from .libemail import EnvelopeInfo, has_encrypted_zip
+from .libemail import has_encrypted_zip
 
-
-# Cf.
-# https://pythonhosted.org/pymilter/milter-template_8py-example.html
 
 @Milter.header_leading_space
 class NoPPAPMilter(Milter.Base):

@@ -15,15 +15,11 @@ class Attach:
     is_encrypted_zip: bool
 
 
-def _parse_attach(att: email.message.EmailMessage) -> Attach:
-    filename = att.get_filename()
-
+def _is_attach_encrypted(att: email.message.EmailMessage) -> bool:
     data: bytes = att.get_payload(decode=True)
 
-    is_zip = False
     is_encrypted_zip = False
     if zipfile.is_zipfile(BytesIO(data)):
-        is_zip = True
         zf = zipfile.ZipFile(BytesIO(data))
         for zinfo in zf.infolist():
             is_encrypted = zinfo.flag_bits & 0x1
@@ -31,9 +27,7 @@ def _parse_attach(att: email.message.EmailMessage) -> Attach:
                 is_encrypted_zip = True
                 break
 
-    attach = Attach(filename, is_zip, is_encrypted_zip)
-
-    return attach
+    return is_encrypted_zip
 
 
 def has_encrypted_zip(fp: BytesIO) -> bool:
@@ -42,8 +36,7 @@ def has_encrypted_zip(fp: BytesIO) -> bool:
         email.message_from_binary_file(fp, policy=email.policy.compat32))
 
     for part in cast(Generator[email.message.EmailMessage, None, None], em.walk()):
-        attach = _parse_attach(part)
-        if attach.is_encrypted_zip:
+        if _is_attach_encrypted(part):
             return True
 
     return False

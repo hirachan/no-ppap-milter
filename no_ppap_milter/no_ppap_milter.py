@@ -3,10 +3,13 @@ from typing import Tuple, Union, Any
 import tempfile
 import socket
 from io import BytesIO
+from logging import getLogger
 
 import Milter
 
 from .libemail import has_encrypted_zip
+
+logger = getLogger()
 
 
 @Milter.header_leading_space
@@ -46,10 +49,13 @@ class NoPPAPMilter(Milter.Base):
         return Milter.CONTINUE
 
     def eom(self):
-        self.fp.seek(0)
-        if has_encrypted_zip(self.fp):
-            self.setreply('550', '5.7.1', 'We do not accpet encrypted zip.')
-            return Milter.REJECT
+        try:
+            self.fp.seek(0)
+            if has_encrypted_zip(self.fp):
+                self.setreply('550', '5.7.1', 'We do not accpet encrypted zip.')
+                return Milter.REJECT
+        except Exception as e:
+            logger.error("Error: %s", e)
 
         return Milter.ACCEPT
 

@@ -16,7 +16,7 @@ yum install -y python3 gcc python3-devel sendmail-devel
 
 ```console
 apt-get install -y python3-pip libmilter-dev
-
+```
 
 ## Install
 
@@ -32,7 +32,7 @@ This will listen on port 9201 by default.
 no-ppap-milter
 ```
 
-If you want to use other ports,
+If you want to use another port,
 
 ```
 no-ppap-milter --socket-name inet:1234

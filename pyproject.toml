@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "no-ppap-milter"
-version = "0.2.1"
+version = "0.2.2"
 description = "This is a milter to prevent receiving emails which has encrypted zip attachments."
 authors = ["HIRANO Yoshitaka <yo@hirano.cc>"]
 license = "MIT"

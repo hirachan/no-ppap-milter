@@ -4,15 +4,7 @@ import email.policy
 import email.message
 import email.utils
 from io import BytesIO
-from dataclasses import dataclass
 import zipfile
-
-
-@dataclass
-class Attach:
-    filename: str
-    is_zip: bool
-    is_encrypted_zip: bool
 
 
 def _is_attach_encrypted(att: email.message.EmailMessage) -> bool:

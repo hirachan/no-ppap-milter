@@ -18,7 +18,7 @@ class NoPPAPMilter(Milter.Base):
 
     @Milter.noreply
     def connect(self, hostname: str, family: socket.AddressFamily, hostaddr: Union[Tuple[str, int], Tuple[str, int, int, int], str]) -> Any:
-        print(f"Connected from: {hostname}({hostaddr})")
+        logger.info(f"Connected from: {hostname}({hostaddr})")
         sys.stdout.flush()
 
         return Milter.CONTINUE
@@ -43,8 +43,6 @@ class NoPPAPMilter(Milter.Base):
     @Milter.noreply
     def body(self, chunk):
         self.fp.write(chunk)
-
-        print(len(chunk))
 
         return Milter.CONTINUE
 
